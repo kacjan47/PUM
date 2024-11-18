@@ -28,18 +28,16 @@ public class Question10 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_question10);
 
-        // Dodanie paddingu na systemowe paski
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Pobierz wynik z poprzedniej aktywności
         score = getIntent().getIntExtra("score", 0);
 
         questions = QuestionData.getQuestions();
-        currentQuestion = questions.get(9);  // 10-te pytanie (indeks 9)
+        currentQuestion = questions.get(9);
 
         setQuestionAndAnswers();
 
@@ -48,13 +46,11 @@ public class Question10 extends AppCompatActivity {
             int selectedId = radioGroup.getCheckedRadioButtonId();
             RadioButton selectedRadioButton = findViewById(selectedId);
 
-            // Sprawdzenie odpowiedzi
             if (selectedId == radioGroup.getChildAt(currentQuestion.getCorrectAnswerIndex()).getId()) {
                 score += 1;
             }
             Log.d("QuizApp", "Aktualny wynik: " + score);
 
-            // Przechodzimy do ekranu końcowego
             Intent intent = new Intent(Question10.this, EndActivity.class);  // Zmiana na EndActivity
             intent.putExtra("score", score);
             startActivity(intent);
