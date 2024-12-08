@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tasksList">
+
+    <!-- Fragment z listą zadań -->
+    <fragment
+        android:id="@+id/tasksList"
+        android:name="pl.edu.uwr.loginapp.tasksList"
+        android:label="Lista zadań"
+        tools:layout="@layout/fragment_tasks_list">
+        <action
+            android:id="@+id/action_tasksList_to_taskDetailsFragment"
+            app:destination="@id/taskDetailsFragment" />
+        <action
+            android:id="@+id/action_tasksList_to_gradesList"
+            app:destination="@id/gradesList" />
+    </fragment>
+
+    <!-- Fragment z widokiem szczegółowym -->
+    <fragment
+        android:id="@+id/taskDetailsFragment"
+        android:name="pl.edu.uwr.loginapp.TaskDetailsFragment"
+        android:label="Szczegóły zadań"
+        tools:layout="@layout/fragment_task_details">
+        <argument
+            android:name="tasks"
+            app:argType="java.util.ArrayList" />
+    </fragment>
+
+    <!-- Fragment z ocenami -->
+    <fragment
+        android:id="@+id/gradesList"
+        android:name="pl.edu.uwr.loginapp.gradesList"
+        android:label="Moje Oceny"
+        tools:layout="@layout/fragment_grades_list" />
+</navigation>
